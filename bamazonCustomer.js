@@ -22,7 +22,6 @@ function validateInput(value) {
 	}
 }
 
-
 function promptUserToBuy() {
 	inquirer.prompt([
 		{
@@ -55,14 +54,14 @@ function promptUserToBuy() {
 				var productData = data[0];
 
 				if (quantity <= productData.stock_quantity) {
-					console.log('Your selection is in stock. Order being processed.');
+					console.log('Your selection is in stock and we are processing your order.');
 
 					var updateQueryString = 'UPDATE products SET stock_quantity = ' + (productData.stock_quantity - quantity) + ' WHERE item_id = ' + item;
 
 					connection.query(updateQueryString, function(err, data) {
 						if (err) throw err;
 
-						console.log('Your order was successfully placed. Your total is $' + productData.price * quantity);
+						console.log('Your total is $' + productData.price * quantity);
 						console.log('Thank you for your business. Visit us again soon!');
                         console.log('...................\n');
                         
